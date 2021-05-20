@@ -1,0 +1,27 @@
+syntax = "proto3";
+package pubsub;
+import "google/protobuf/empty.proto";
+option csharp_namespace = "GrpcPublisherService";
+
+service PubSub {
+ rpc Subscribe(SubscribeRequest) returns (stream StreamElementResponse) {}
+ rpc Unsubscribe(UnsubscribeRequest) returns (google.protobuf.Empty) {}
+ rpc Post(PostRequest) returns (google.protobuf.Empty) {}
+}
+
+message StreamElementResponse
+{
+   string Value = 1;
+}
+message SubscribeRequest
+{
+  string SubscriberId = 1;
+}
+message UnsubscribeRequest
+{
+  string SubscriberId = 1;
+}
+message PostRequest
+{
+	string Value = 1;
+}
